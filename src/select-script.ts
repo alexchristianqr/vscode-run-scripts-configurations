@@ -1,8 +1,7 @@
 import * as vscode from 'vscode';
 import { existsSync } from 'fs';
-import { log } from 'console';
 
-var globalWindowTerminal: vscode.Terminal
+var globalWindowTerminal: vscode.Terminal;
 
 export async function showScripts() {
     const wok = vscode.workspace.rootPath;
@@ -25,7 +24,7 @@ export async function showScripts() {
                 globalWindowTerminal.show();
                 setTimeout(() => {
                     globalWindowTerminal.sendText(`${runCommand} run ${response}`);
-                    vscode.commands.executeCommand('setContext', 'ext.actionStartCommand', true);
+                    vscode.commands.executeCommand('setContext', 'varext.buttonStartVisible', true);
                 }, 1000);
             }
         });
@@ -37,19 +36,22 @@ export async function showScripts() {
 
 export async function scriptActionReloadCommand() {
     const wok = vscode.workspace.rootPath;
-    if (!wok) throw new Error("Not found workspace")
+    if (!wok) {
+        throw new Error("Not found workspace");
+    }
 
-    const processId = await globalWindowTerminal.processId
-    console.log("El PID es: ", processId)
+    const processId = await globalWindowTerminal.processId;
+    console.log("El PID es: ", processId);
 }
 
 export async function scriptActionStopCommand() {
     const wok = vscode.workspace.rootPath;
-    if (!wok) throw new Error("Not found workspace")
-
+    if (!wok) {
+        throw new Error("Not found workspace");
+    }
     // console.log(await vscode.commands.getCommands());
 
     // workbench.action.terminal.new
-    await vscode.commands.executeCommand('setContext', 'workbench.action.terminal.kill', true);
+    // await vscode.commands.executeCommand('setContext', 'workbench.action.terminal.kill', true);
 
 }

@@ -24,8 +24,12 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "ext.actionStartCommand",
-				"title": "Variable 1"
+				"command": "varext.buttonStartVisible",
+				"title": "Variable extension 1"
+			},
+			{
+				"command": "varext.labelButtonDropdown",
+				"title": "Al"
 			},
 			{
 				"command": "run-button-script.run",
@@ -55,28 +59,29 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "ext.actionStartCommand",
-					"group": "navigation"
-				},
-				{
-					"command": "workbench.action.terminal.kill",
+					"command": "varext.buttonStartVisible",
 					"group": "navigation"
 				}
 			],
 			"editor/title": [
 				{
+					"command": "varext.labelButtonDropdown",
+					"when": "!varext.buttonStartVisible",
+					"group": "navigation"
+				},
+				{
 					"command": "run-button-script.run",
-					"when": "!ext.actionStartCommand",
+					"when": "!varext.buttonStartVisible",
 					"group": "navigation"
 				},
 				{
 					"command": "rerun-button-script.run",
-					"when": "ext.actionStartCommand",
+					"when": "varext.buttonStartVisible",
 					"group": "navigation"
 				},
 				{
 					"command": "stop-button-script.run",
-					"when": "ext.actionStartCommand",
+					"when": "varext.buttonStartVisible",
 					"group": "navigation"
 				}
 			]
