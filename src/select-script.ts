@@ -4,7 +4,7 @@ import { existsSync } from 'fs';
 var globalWindowTerminal: vscode.Terminal;
 
 export async function showScripts() {
-    const wok = vscode.workspace.rootPath;
+    const wok = vscode.workspace.rootPath
 
 
     if (wok) {
@@ -49,9 +49,4 @@ export async function scriptActionStopCommand() {
     if (!wok) {
         throw new Error("Not found workspace");
     }
-    // console.log(await vscode.commands.getCommands());
-
-    // workbench.action.terminal.new
-    // await vscode.commands.executeCommand('setContext', 'workbench.action.terminal.kill', true);
-
 }
