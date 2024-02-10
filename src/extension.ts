@@ -11,9 +11,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const arrayDisposables: Array<vscode.Disposable> = [];
 
-	const codeA = new vscode.DocumentDropEdit("Test");
-	codeA.insertText = "Holaaaa"
-
 	const actionStartCommand = vscode.commands.registerCommand('run-button-script.run', async () => {
 		console.log("Action command start");
 		await showScripts();
