@@ -3,9 +3,23 @@ import { existsSync } from 'fs';
 
 var globalWindowTerminal: vscode.Terminal;
 
-export async function showScripts() {
-    const wok = vscode.workspace.rootPath
+export async function showScripts(context: vscode.ExtensionContext) {
 
+    let wok: string | undefined;
+
+    if (!vscode.workspace.workspaceFolders) {
+        wok = vscode.workspace.rootPath;
+    } else {
+        let root: vscode.WorkspaceFolder | undefined;
+
+        if (vscode.workspace.workspaceFolders.length > 0) {
+            root = vscode.workspace.workspaceFolders[0];
+        } else {
+            root = vscode.workspace.getWorkspaceFolder(context.extensionUri);
+        }
+
+        wok = root?.uri.fsPath;
+    }
 
     if (wok) {
         const packageJsonPath = (`${wok}/package.json`);
@@ -35,7 +49,7 @@ export async function showScripts() {
 }
 
 export async function scriptActionReloadCommand() {
-    const wok = vscode.workspace.rootPath;
+    const wok = vscode.workspace.workspaceFolders;
     if (!wok) {
         throw new Error("Not found workspace");
     }
@@ -45,7 +59,7 @@ export async function scriptActionReloadCommand() {
 }
 
 export async function scriptActionStopCommand() {
-    const wok = vscode.workspace.rootPath;
+    const wok = vscode.workspace.workspaceFolders;
     if (!wok) {
         throw new Error("Not found workspace");
     }

@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const actionStartCommand = vscode.commands.registerCommand('run-button-script.run', async () => {
 		console.log("Action command start");
-		await showScripts();
+		await showScripts(context);
 	});
 
 	const actionReloadCommand = vscode.commands.registerCommand('rerun-button-script.run', async () => {
