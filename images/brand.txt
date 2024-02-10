@@ -1,0 +1,8 @@
+PLAY / PAUSE
+fill: #57965c
+
+PAUSE
+fill: #57965c
+
+STOP
+fill: #c94f4f

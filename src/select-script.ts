@@ -4,6 +4,7 @@ import { existsSync } from 'fs';
 export async function showScripts() {
     const wok = workspace.rootPath;
 
+
     if (wok) {
         const packageJsonPath = (`${wok}/package.json`);
         const checkPkgManager = existsSync(`${wok}/package-lock.json`);

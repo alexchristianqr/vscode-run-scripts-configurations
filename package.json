@@ -7,7 +7,7 @@
 	"publisher": "JuanJoseCarracedo",
 	"author": "Juan Jose Carracedo (djwayomix@gmail.com)",
 	"engines": {
-		"vscode": "^1.37.0"
+		"vscode": "^1.75.0"
 	},
 	"categories": [
 		"Other"
@@ -20,7 +20,9 @@
 		"extension"
 	],
 	"activationEvents": [
-		"onCommand:run-button-script.run"
+		"onCommand:run-button-script.run",
+		"onCommand:rerun-button-script.run",
+		"onCommand:stop-button-script.run"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -29,8 +31,24 @@
 				"command": "run-button-script.run",
 				"title": "Run script button",
 				"icon": {
-					"light": "./images/play-icon.svg",
-					"dark": "./images/play-icon.svg"
+					"light": "./images/debug-start.svg",
+					"dark": "./images/debug-start.svg"
+				}
+			},
+			{
+				"command": "rerun-button-script.run",
+				"title": "Run script button 2",
+				"icon": {
+					"light": "./images/debug-rerun.svg",
+					"dark": "./images/debug-rerun.svg"
+				}
+			},
+			{
+				"command": "stop-button-script.run",
+				"title": "Run script button 3",
+				"icon": {
+					"light": "./images/debug-stop.svg",
+					"dark": "./images/debug-stop.svg"
 				}
 			}
 		],
@@ -38,7 +56,17 @@
 			"editor/title": [
 				{
 					"command": "run-button-script.run",
-					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact | resourceLangId == javascriptreact",
+					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
+					"group": "navigation"
+				},
+				{
+					"command": "rerun-button-script.run",
+					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
+					"group": "navigation"
+				},
+				{
+					"command": "stop-button-script.run",
+					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
 					"group": "navigation"
 				}
 			]
@@ -65,16 +93,19 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.37.0",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.30.0",
+		"@types/vscode": "^1.37.0",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"eslint": "^6.8.0",
 		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"@vscode/test-electron": "^2.3.9"
 	}
 }
