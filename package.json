@@ -19,14 +19,14 @@
 		"package.json",
 		"extension"
 	],
-	"activationEvents": [
-		"onCommand:run-button-script.run",
-		"onCommand:rerun-button-script.run",
-		"onCommand:stop-button-script.run"
-	],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "ext.actionStartCommand",
+				"title": "Variable 1"
+			},
 			{
 				"command": "run-button-script.run",
 				"title": "Run script button",
@@ -53,20 +53,30 @@
 			}
 		],
 		"menus": {
+			"explorer/context": [
+				{
+					"command": "ext.actionStartCommand",
+					"group": "navigation"
+				},
+				{
+					"command": "workbench.action.terminal.kill",
+					"group": "navigation"
+				}
+			],
 			"editor/title": [
 				{
 					"command": "run-button-script.run",
-					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
+					"when": "!ext.actionStartCommand",
 					"group": "navigation"
 				},
 				{
 					"command": "rerun-button-script.run",
-					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
+					"when": "ext.actionStartCommand",
 					"group": "navigation"
 				},
 				{
 					"command": "stop-button-script.run",
-					"when": "resourceLangId == typescript || resourceLangId == javascript || resourceLangId == typescriptreact || resourceLangId == javascriptreact",
+					"when": "ext.actionStartCommand",
 					"group": "navigation"
 				}
 			]
@@ -82,7 +92,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/DonsWayo/vscode-run-script-button.git"
+		"url": "https://github.com/alexchristianqr/vscode-run-scripts-configurations.git"
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
