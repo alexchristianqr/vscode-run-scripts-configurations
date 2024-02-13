@@ -6,7 +6,6 @@ A VS Code extension that allows you to run package.json scripts quickly with npm
 
 ![Run button script VS Code extension](./images/demo.gif)
 
-
 ## Installation
 
 In the command palette (`CMD + SHIFT + P`) select “Install Extension” and choose “Run button script”.
